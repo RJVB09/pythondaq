@@ -3,6 +3,7 @@ import numpy as np
 import time as t
 from matplotlib import pyplot as plt
 import csv
+from os.path import exists
 
 # Raw voltage to voltage conversion factor
 raw2voltage = (3.3 / 1023.0) # V
@@ -40,7 +41,7 @@ for v in range(1024):
     voltages_resistor.append(voltage_resistor)
 
     print(f"{v}) Voltages: ( LED raw: {np.round(raw_voltage_LED,2)}, LED: {np.round(voltage_LED,2)}V, resistor raw: {np.round(raw_voltage_resistor,2)}, resistor: {np.round(voltage_resistor,2)}V  )")
-    t.sleep(0.01)
+    t.sleep(0.001)
 
 # Divide the voltage over the resistor by the resistance to get the current. Resistor is 220Ohm
 currents_LED = [voltage / 220 for voltage in voltages_resistor] #Ohm
@@ -51,6 +52,12 @@ plt.xlabel("U (V)")
 plt.ylabel("I (A)")
 
 plt.show()
+
+# Prevent overwriting files by creating duplicates
+csv_file_name = "metingen"
+
+# TODO prevent files from being overwritten.
+
 
 # Creata a CSV file and write the voltages and currents from the LED to it.
 with open("metingen.csv", "w", newline = "") as csvfile:
