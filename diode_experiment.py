@@ -18,7 +18,7 @@ class DiodeExperiment:
         print("Testing...")
 
         for v in range(start, stop):
-            # Create the result lists in which we will store the voltages and currents for output voltage v
+            # Create the result lists in which we will store the voltages and currents from the measurement iterations for output voltage v
             LED_voltages = []
             LED_currents = []
 

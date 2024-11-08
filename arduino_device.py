@@ -12,6 +12,7 @@ def list_resources():
 
 class ArduinoVISADevice:
     def __init__(self, port):
+        # Conversion constants
         self.raw2voltage = (3.3 / 1023.0)
         self.voltage2raw = (1023.0 / 3.3)
 
@@ -20,17 +21,19 @@ class ArduinoVISADevice:
 
         # Get the device
         self.device = rm.open_resource(port, read_termination="\r\n", write_termination="\n")
-
-    # Get the identification string of the device
+    
     def get_identification(self):
         return self.device.query("*IDN?")
 
+    # Set output value on port A0
     def set_output_value(self, value):
         self.device.query(f"OUT:CH0 {value}")
 
+    # Get output value on port A0
     def get_output_value(self):
         return int(self.device.query(f"OUT:CH0?"))
     
+    # Measure value on a channel
     def get_input_value(self, channel):
         return int(self.device.query(f"MEAS:CH{channel}?"))
 
