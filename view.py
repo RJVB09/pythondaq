@@ -1,4 +1,5 @@
 from matplotlib import pyplot as plt
+import csv
 from diode_experiment import DiodeExperiment
 
 # Try to ask for an integer, ask again if the value given is not an integer.
@@ -19,6 +20,17 @@ def clamp_integer_input(min, max, value):
         return max
 
     return value
+
+def create_csv(filename, columns, headers):
+    # TODO prevent files from being overwritten.
+
+    # Creata a CSV file and write the voltages and currents from the LED to it.
+    with open(f"{filename}.csv", "w", newline = "") as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(headers)
+        
+        for data in zip(*columns):
+            writer.writerow(data)
             
 
 # Compare two LEDs and display the results in a scatterplot
@@ -48,3 +60,8 @@ plt.ylabel("I (A)")
 plt.legend()
 
 plt.show()
+
+# Generate csv files
+create_csv("MetingenLed1", (U_1, I_1, U_1_err, I_1_err), ("U (V)", "I (A)", "U_err (V)", "I_err (A)"))
+create_csv("MetingenLed2", (U_2, I_2, U_2_err, I_2_err), ("U (V)", "I (A)", "U_err (V)", "I_err (A)"))
+
