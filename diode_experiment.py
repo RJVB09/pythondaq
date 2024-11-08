@@ -9,6 +9,19 @@ class DiodeExperiment:
         self.device = ArduinoVISADevice(port=port)
 
     def scan(self, start, stop, iterations):
+        """Execute the experiment for a number of iterations in a given voltage range.
+
+        Args:
+            start (int): Start of voltage measurement range. (0-1023)
+            stop (int): End of voltage measurement range. (0-1023)
+            iterations (int): How many times should the voltage and current be recorded for a given input voltage.
+
+        Returns:
+            list (float): Average voltages over the LED
+            list (float): Average currents over the LED
+            list (float): Errors on the voltages over the LED
+            list (float): Errors on the currents over the LED
+        """
         # The average current and voltages after the amount of iterations
         LED_voltages_err = []
         LED_currents_err = []
