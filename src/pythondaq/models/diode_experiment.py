@@ -2,7 +2,7 @@ import pyvisa
 import numpy as np
 import time as t
 
-from arduino_device import ArduinoVISADevice, list_resources
+from pythondaq.controllers.arduino_device import ArduinoVISADevice, list_resources
 
 class DiodeExperiment:
     def __init__(self, port):

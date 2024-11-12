@@ -1,6 +1,6 @@
 from matplotlib import pyplot as plt
 import csv
-from diode_experiment import DiodeExperiment
+from pythondaq.models.diode_experiment import DiodeExperiment
 import os
 
 # Try to ask for an integer, ask again if the value given is not an integer.
