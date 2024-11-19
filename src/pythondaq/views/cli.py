@@ -11,12 +11,18 @@ def cmd_group():
 
 @cmd_group.command()
 def list():
+    """Retrieve a list of resource names connected to this computer.
+    """
     list_resources()
     pass
 
 @cmd_group.command()
 @click.argument("device")
 def info(device):
+    """Get the full name of a DEVICE
+
+    DEVICE is the resource name of the targeted device.
+    """
     # Create a new instance of an experiment as to avoid using the controller.
     experiment = DiodeExperiment(device)
     print(experiment.get_identification())
@@ -58,9 +64,11 @@ def info(device):
     show_default = True,  # show default in help
 )
 def scan(device, maxvoltage, minvoltage, output, iterations, graph): # Same goes for these arguments
-    """Main view code to run
+    """Run the diode experiment on a DEVICE.
+
+    DEVICE is the resource name of the device on which to run the experiment.
     """
-    # Compare two LEDs and display the results in a scatterplot
+
     experiment = DiodeExperiment(device)
 
     # Clamp the input voltages and inform the user when needed. also convert them to raw values instead of voltages
