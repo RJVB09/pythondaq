@@ -2,13 +2,16 @@ import pyvisa
 import numpy as np
 
 def list_resources():
-    """Retrieve list of available ports.
+    """Retrieve and show a list of available ports.
 
     Returns:
         list (string): List of available ports.
     """
     # Retrieve the resource manager
     rm = pyvisa.ResourceManager("@py")
+
+    # Print the list of ports in the terminal
+    print(rm.list_resources())
 
     # Retrieve and return all ports
     return rm.list_resources()

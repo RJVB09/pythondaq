@@ -1,7 +1,6 @@
 from matplotlib import pyplot as plt
 import csv
 from pythondaq.models.diode_experiment import DiodeExperiment
-import os
 
 # Try to ask for an integer, ask again if the value given is not an integer.
 def try_integer_input(message):

@@ -7,6 +7,9 @@ from pythondaq.controllers.arduino_device import ArduinoVISADevice, list_resourc
 class DiodeExperiment:
     def __init__(self, port):
         self.device = ArduinoVISADevice(port=port)
+    
+    def get_identification(self):
+        return self.device.get_identification()
 
     def scan(self, start, stop, iterations):
         """Execute the experiment for a number of iterations in a given voltage range.
