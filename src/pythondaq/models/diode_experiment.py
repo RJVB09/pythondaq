@@ -4,6 +4,8 @@ import time as t
 
 from pythondaq.controllers.arduino_device import ArduinoVISADevice, list_resources
 
+raw2voltage = (3.3 / 1023.0)
+
 class DiodeExperiment:
     def __init__(self, port):
         self.device = ArduinoVISADevice(port=port)
@@ -71,8 +73,9 @@ class DiodeExperiment:
             LED_voltages_avg.append(LED_voltage_avg)
             LED_currents_avg.append(LED_current_avg)
 
+            # Log the results of a single batch of measurements.
             if log:
-                print(f"Input value: {v} | U = {LED_voltage_avg}V±{LED_voltage_avg_err}V | I = {LED_current_avg}A±{LED_current_avg_err}A")
+                print(f"Input voltage: {np.round(v * raw2voltage,3)}V | U = {LED_voltage_avg}V±{LED_voltage_avg_err}V | I = {LED_current_avg}A±{LED_current_avg_err}A")
 
 
         print("Done.")
