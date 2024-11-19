@@ -89,13 +89,26 @@ def info(device):
     help = "Whether to show a graph or not show one.",
     show_default = True,  # show default in help
 )
-def scan(device, maxvoltage, minvoltage, output, iterations, graph): # Same goes for these arguments
+@click.option(
+    "-l",
+    "--log",
+    is_flag = True,
+    help = "Whether to print the measurements in the terminal when a graph or csv is created.",
+    show_default = True,  # show default in help
+)
+def scan(device, maxvoltage, minvoltage, output, iterations, graph, log): # Same goes for these arguments
     """Run the diode experiment on a DEVICE.
 
     DEVICE is the resource name of the device on which to run the experiment.
     """
 
+    # Whether a csv should be created.
+    csv = output != ""
+
     experiment = DiodeExperiment(device)
+
+    # Log results when there is no graph shown and no csv created or when the user asks for logging.
+    log_results = (not csv and not graph) or log
 
     # Clamp the input voltages and inform the user when needed. also convert them to raw values instead of voltages
     iterations = vm.clamp_input(1,50,iterations,"iterations")
@@ -108,10 +121,10 @@ def scan(device, maxvoltage, minvoltage, output, iterations, graph): # Same goes
 
     # Do the measurements
     print(input("Press any key to start the measurement..."))
-    U, I, U_err, I_err = experiment.scan(start = start, stop = stop, iterations = iterations)
+    U, I, U_err, I_err = experiment.scan(start = start, stop = stop, iterations = iterations, log = log_results)
     
     # Generate csv files if the user wishes to.
-    if output != "":
+    if csv:
         vm.create_csv(output, (U, I, U_err, I_err), ("U (V)", "I (A)", "U_err (V)", "I_err (A)"))
     
     # Show a graph if the user wishes to

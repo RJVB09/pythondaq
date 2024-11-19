@@ -16,7 +16,7 @@ class DiodeExperiment:
         """
         return self.device.get_identification()
 
-    def scan(self, start, stop, iterations):
+    def scan(self, start, stop, iterations, log):
         """Execute the experiment for a number of iterations in a given voltage range.
 
         Args:
@@ -58,12 +58,22 @@ class DiodeExperiment:
                 LED_currents.append(LED_current)
 
             # Calculate the error on the average by taking the std of the result lists and dividing this by the square root of the amount of iterations
-            LED_voltages_err.append(np.std(LED_voltages) / np.sqrt(iterations))
-            LED_currents_err.append(np.std(LED_currents) / np.sqrt(iterations))
+            LED_voltage_avg_err = np.std(LED_voltages) / np.sqrt(iterations)
+            LED_current_avg_err = np.std(LED_currents) / np.sqrt(iterations)
+
+            LED_voltages_err.append(LED_voltage_avg_err)
+            LED_currents_err.append(LED_current_avg_err)
 
             # Calculate the averages themselves
-            LED_voltages_avg.append(np.average(LED_voltages))
-            LED_currents_avg.append(np.average(LED_currents))
+            LED_voltage_avg = np.average(LED_voltages)
+            LED_current_avg = np.average(LED_currents)
+
+            LED_voltages_avg.append(LED_voltage_avg)
+            LED_currents_avg.append(LED_current_avg)
+
+            if log:
+                print(f"Input value: {v} | U = {LED_voltage_avg}V±{LED_voltage_avg_err}V | I = {LED_current_avg}A±{LED_current_avg_err}A")
+
 
         print("Done.")
     
