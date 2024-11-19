@@ -10,11 +10,37 @@ def cmd_group():
     pass
 
 @cmd_group.command()
-def list():
+@click.option(
+    "-s",
+    "--search",
+    default = "",
+    help = "Search for a device by a search prompt",
+    show_default = True,  # show default in help
+)
+def list(search):
     """Retrieve a list of resource names connected to this computer.
     """
-    list_resources()
-    pass
+
+    resource_list = list_resources()
+    search_prompt = search.split()
+
+    # List all results when no search promt is given
+    if search == "":
+        print(resource_list)
+    else:
+        # Create list
+        search_results = []
+        for resource in resource_list:
+            found = False
+            for search_term in search_prompt:
+                if search_term in resource:
+                    found |= True
+
+            if found:
+                search_results.append(resource)
+
+
+        print(search_results)
 
 @cmd_group.command()
 @click.argument("device")

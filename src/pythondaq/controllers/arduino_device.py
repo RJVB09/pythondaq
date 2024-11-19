@@ -10,9 +10,6 @@ def list_resources():
     # Retrieve the resource manager
     rm = pyvisa.ResourceManager("@py")
 
-    # Print the list of ports in the terminal
-    print(rm.list_resources())
-
     # Retrieve and return all ports
     return rm.list_resources()
 

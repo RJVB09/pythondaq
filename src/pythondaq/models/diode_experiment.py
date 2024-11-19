@@ -9,6 +9,11 @@ class DiodeExperiment:
         self.device = ArduinoVISADevice(port=port)
     
     def get_identification(self):
+        """Get identification of the current device.
+
+        Returns:
+            string: String identifying the device
+        """
         return self.device.get_identification()
 
     def scan(self, start, stop, iterations):

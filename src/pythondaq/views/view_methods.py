@@ -49,7 +49,7 @@ def create_csv(filename, columns, headers):
     # TODO prevent files from being overwritten.
 
     if len(headers) != len(columns):
-        print(f"CSV file \"{filename}.csv\" can't be created: The amount of headers does not match the amount of colums.")
+        print(f"Error: CSV file \"{filename}.csv\" can't be created: The amount of headers does not match the amount of colums.")
         return
 
     # Creata a CSV file and write the voltages and currents from the LED to it.
