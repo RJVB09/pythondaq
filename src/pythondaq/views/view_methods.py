@@ -17,13 +17,13 @@ def try_integer_input(message):
             print("Input must be an integer.")
 
 # Clamp an integer input to a certain range and notify the user about it.
-def clamp_integer_input(min, max, value, name):
-    """Clamp an integer to a given min and max value and inform the user if the value has been altered.
+def clamp_input(min, max, value, name):
+    """Clamp a value to a given min and max value and inform the user if the value has been altered.
 
     Args:
-        min (int): Minimum value
-        max (int): Maximum value
-        value (int): Value to clamp
+        min (int/float): Minimum value
+        max (int/float): Maximum value
+        value (int/float): Value to clamp
 
     Returns:
         int: Clamped value
