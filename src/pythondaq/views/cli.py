@@ -150,5 +150,6 @@ def scan(device, maxvoltage, minvoltage, output, iterations, graph, log): # Same
 
         plt.show()
 
-
+if __name__ == "__main__":
+    list("")
 
