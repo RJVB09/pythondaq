@@ -1,9 +1,16 @@
 from pythondaq.models.diode_experiment import DiodeExperiment, list_resources
 import pythondaq.views.view_methods as vm
 import matplotlib.pyplot as plt
+import numpy as np
 import click
+from pythondaq.views.console_styling import console
+from rich.progress import Progress
 
 voltage2raw = (1023.0 / 3.3)
+raw2voltage = (3.3 / 1023.0)
+
+def logmethod(v_in, U, U_err, I, I_err):
+    console.print(f"[misc][misc_var]Input U[/misc_var] = [value]{np.round(v_in * raw2voltage,3)} V[/value] | [voltage]U[/voltage] = [value]{U} V ± {U_err} V[/value] | [current]I[/current] = [value]{I} A ± {I_err} A[/value][/misc]")
 
 @click.group()
 def cmd_group():
@@ -116,13 +123,20 @@ def scan(device, maxvoltage, minvoltage, output, iterations, graph, log): # Same
     stop = int(vm.clamp_input(0,3.3,maxvoltage,"maxvoltage") * voltage2raw)
 
     # Warn the user if the max voltage is smaller than the min voltage
-    if maxvoltage < minvoltage:
-        print("Warning: The maximum voltage of the measurement bound is smaller than the minimum voltage of the measurement bound. No measurements will be done.")
+    if stop <= start:
+        console.print("[misc][warn]Warning[/warn]: The maximum voltage of the measurement bound is smaller than or equal to the minimum voltage of the measurement bound. No measurements will be done.[/misc]")
 
     # Do the measurements
-    print(input("Press any key to start the measurement..."))
-    U, I, U_err, I_err = experiment.scan(start = start, stop = stop, iterations = iterations, log = log_results)
+    console.print(console.input("[notify]Press any key to start the measurement..."))
+    with Progress() as progress:
+        task = None
+
+        if not log_results and stop - start > 0:
+            task = progress.add_task("[yellow]Testing...", total = stop - start)
+
+        U, I, U_err, I_err = experiment.scan(start = start, stop = stop, iterations = iterations, log = log_results, logmethod = logmethod, progress_bar = progress, progress_bar_task = task)
     
+    console.print("[success]Done.[/success]")
     # Generate csv files if the user wishes to.
     if csv:
         vm.create_csv(output, (U, I, U_err, I_err), ("U (V)", "I (A)", "U_err (V)", "I_err (A)"))
@@ -135,8 +149,6 @@ def scan(device, maxvoltage, minvoltage, output, iterations, graph, log): # Same
         plt.legend()
 
         plt.show()
-    
-    pass
 
 
 

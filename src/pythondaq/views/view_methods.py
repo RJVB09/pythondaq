@@ -1,4 +1,5 @@
 import csv
+from pythondaq.views.console_styling import console
 
 # Try to ask for an integer, ask again if the value given is not an integer.
 def try_integer_input(message):
@@ -14,7 +15,7 @@ def try_integer_input(message):
         try:
             return int(input(message))
         except ValueError:
-            print("Input must be an integer.")
+            console.print("[misc][error]Error[/error]:Input must be an integer.[/misc]")
 
 # Clamp an integer input to a certain range and notify the user about it.
 def clamp_input(min, max, value, name):
@@ -29,10 +30,10 @@ def clamp_input(min, max, value, name):
         int: Clamped value
     """
     if value < min:
-        print(f"{name} has been clamped to {min}.")
+        console.print(f"[misc][warn]Warning[/warn]: [misc_var]{name}[/misc_var] has been clamped to {min}.[/misc]")
         return min
     elif value > max:
-        print(f"{name} has been clamped to {max}.")
+        console.print(f"[misc][warn]Warning[/warn]: [misc_var]{name}[/misc_var] has been clamped to {max}.[/misc]")
         return max
 
     return value
@@ -49,7 +50,7 @@ def create_csv(filename, columns, headers):
     # TODO prevent files from being overwritten.
 
     if len(headers) != len(columns):
-        print(f"Error: CSV file \"{filename}.csv\" can't be created: The amount of headers does not match the amount of colums.")
+        console.print(f"[misc][error]Error[/error]: CSV file [misc_var]\"{filename}.csv\"[/misc_var] can't be created: The amount of headers does not match the amount of colums.[/misc]")
         return
 
     # Creata a CSV file and write the voltages and currents from the LED to it.

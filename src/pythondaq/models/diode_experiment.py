@@ -18,7 +18,7 @@ class DiodeExperiment:
         """
         return self.device.get_identification()
 
-    def scan(self, start, stop, iterations, log):
+    def scan(self, start, stop, iterations, log, logmethod, progress_bar=None, progress_bar_task=None):
         """Execute the experiment for a number of iterations in a given voltage range.
 
         Args:
@@ -37,8 +37,6 @@ class DiodeExperiment:
         LED_currents_err = []
         LED_voltages_avg = []
         LED_currents_avg = []
-
-        print("Testing...")
 
         for v in range(start, stop):
             # Create the result lists in which we will store the voltages and currents from the measurement iterations for output voltage v
@@ -75,10 +73,11 @@ class DiodeExperiment:
 
             # Log the results of a single batch of measurements.
             if log:
-                print(f"Input voltage: {np.round(v * raw2voltage,3)}V | U = {LED_voltage_avg}V±{LED_voltage_avg_err}V | I = {LED_current_avg}A±{LED_current_avg_err}A")
+                logmethod(v, LED_voltage_avg, LED_voltage_avg_err, LED_current_avg, LED_current_avg_err)
 
-
-        print("Done.")
+            # Update progress bar if given.
+            if (progress_bar != None and progress_bar_task != None):
+                progress_bar.update(progress_bar_task, advance=1)
     
         return LED_voltages_avg, LED_currents_avg, LED_voltages_err, LED_currents_err
 

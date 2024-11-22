@@ -11,6 +11,7 @@ matplotlib = "^3.9.2"
 pyvisa-py = "^0.7.2"
 pyserial = "^3.5"
 click = "^8.1.7"
+rich = "^13.9.4"
 
 
 [build-system]
