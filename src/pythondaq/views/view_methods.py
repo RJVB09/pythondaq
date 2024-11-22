@@ -13,7 +13,7 @@ def try_integer_input(message):
     """
     while True:
         try:
-            return int(input(message))
+            return int(console.input(message))
         except ValueError:
             console.print("[misc][error]Error[/error]:Input must be an integer.[/misc]")
 
