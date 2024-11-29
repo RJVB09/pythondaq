@@ -13,6 +13,7 @@ pyserial = "^3.5"
 click = "^8.1.7"
 rich = "^13.9.4"
 pyside6 = "^6.8.0.2"
+pyqtgraph = "^0.13.7"
 
 
 [build-system]

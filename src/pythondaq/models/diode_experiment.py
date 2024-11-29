@@ -18,7 +18,7 @@ class DiodeExperiment:
         """
         return self.device.get_identification()
 
-    def scan(self, start, stop, iterations, log, logmethod, progress_bar=None, progress_bar_task=None):
+    def scan(self, start, stop, iterations, log=None, logmethod=None, progress_bar=None, progress_bar_task=None):
         """Execute the experiment for a number of iterations in a given voltage range.
 
         Args:
