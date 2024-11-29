@@ -73,7 +73,7 @@ class DiodeExperiment:
 
             # Log the results of a single batch of measurements.
             if log:
-                logmethod(v, LED_voltage_avg, LED_voltage_avg_err, LED_current_avg, LED_current_avg_err)
+                logmethod(*(v, LED_voltage_avg, LED_voltage_avg_err, LED_current_avg, LED_current_avg_err))
 
             # Update progress bar if given.
             if (progress_bar != None and progress_bar_task != None):
