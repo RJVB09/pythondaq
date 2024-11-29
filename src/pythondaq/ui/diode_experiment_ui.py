@@ -97,6 +97,11 @@ class Ui_MainWindow(object):
 
         self.deviceLayout.addWidget(self.device_label)
 
+        self.updateDevicesButton = QPushButton(self.centralwidget)
+        self.updateDevicesButton.setObjectName(u"updateDevicesButton")
+
+        self.deviceLayout.addWidget(self.updateDevicesButton)
+
         self.deviceComboBox = QComboBox(self.centralwidget)
         self.deviceComboBox.setObjectName(u"deviceComboBox")
 
@@ -171,6 +176,7 @@ class Ui_MainWindow(object):
         self.stop_label.setText(QCoreApplication.translate("MainWindow", u"Stop", None))
         self.iterations_label.setText(QCoreApplication.translate("MainWindow", u"Iterations", None))
         self.device_label.setText(QCoreApplication.translate("MainWindow", u"Device", None))
+        self.updateDevicesButton.setText(QCoreApplication.translate("MainWindow", u"Update devices list...", None))
         self.startButton.setText(QCoreApplication.translate("MainWindow", u"Start measurement", None))
         self.saveLineEdit.setText("")
         self.saveLineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"CSV file name", None))

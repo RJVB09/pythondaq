@@ -93,6 +93,13 @@
            </widget>
           </item>
           <item>
+           <widget class="QPushButton" name="updateDevicesButton">
+            <property name="text">
+             <string>Update devices list...</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QComboBox" name="deviceComboBox"/>
           </item>
          </layout>
