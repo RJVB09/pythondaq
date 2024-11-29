@@ -16,9 +16,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QHBoxLayout, QLabel,
-    QMainWindow, QMenuBar, QProgressBar, QPushButton,
-    QSizePolicy, QSpacerItem, QSpinBox, QStatusBar,
-    QVBoxLayout, QWidget)
+    QLineEdit, QMainWindow, QMenuBar, QProgressBar,
+    QPushButton, QSizePolicy, QSpacerItem, QSpinBox,
+    QStatusBar, QVBoxLayout, QWidget)
 
 from pyqtgraph import PlotWidget
 
@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(927, 509)
+        MainWindow.resize(927, 559)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout_3 = QVBoxLayout(self.centralwidget)
@@ -105,10 +105,20 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addLayout(self.deviceLayout)
 
-        self.start_button = QPushButton(self.centralwidget)
-        self.start_button.setObjectName(u"start_button")
+        self.startButton = QPushButton(self.centralwidget)
+        self.startButton.setObjectName(u"startButton")
 
-        self.verticalLayout.addWidget(self.start_button)
+        self.verticalLayout.addWidget(self.startButton)
+
+        self.saveLineEdit = QLineEdit(self.centralwidget)
+        self.saveLineEdit.setObjectName(u"saveLineEdit")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.saveLineEdit.sizePolicy().hasHeightForWidth())
+        self.saveLineEdit.setSizePolicy(sizePolicy)
+
+        self.verticalLayout.addWidget(self.saveLineEdit)
 
         self.saveButton = QPushButton(self.centralwidget)
         self.saveButton.setObjectName(u"saveButton")
@@ -161,7 +171,9 @@ class Ui_MainWindow(object):
         self.stop_label.setText(QCoreApplication.translate("MainWindow", u"Stop", None))
         self.iterations_label.setText(QCoreApplication.translate("MainWindow", u"Iterations", None))
         self.device_label.setText(QCoreApplication.translate("MainWindow", u"Device", None))
-        self.start_button.setText(QCoreApplication.translate("MainWindow", u"Start measurement", None))
+        self.startButton.setText(QCoreApplication.translate("MainWindow", u"Start measurement", None))
+        self.saveLineEdit.setText("")
+        self.saveLineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"CSV file name", None))
         self.saveButton.setText(QCoreApplication.translate("MainWindow", u"Save", None))
     # retranslateUi
 

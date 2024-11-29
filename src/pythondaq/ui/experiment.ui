@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>927</width>
-    <height>509</height>
+    <height>559</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -98,9 +98,25 @@
          </layout>
         </item>
         <item>
-         <widget class="QPushButton" name="start_button">
+         <widget class="QPushButton" name="startButton">
           <property name="text">
            <string>Start measurement</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="saveLineEdit">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="placeholderText">
+           <string>CSV file name</string>
           </property>
          </widget>
         </item>
