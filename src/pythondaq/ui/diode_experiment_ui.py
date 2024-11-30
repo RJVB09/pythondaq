@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(927, 559)
+        MainWindow.resize(869, 567)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout_3 = QVBoxLayout(self.centralwidget)
@@ -90,6 +90,10 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addLayout(self.iterationsLayout)
 
+        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
+
+        self.verticalLayout.addItem(self.verticalSpacer_4)
+
         self.deviceLayout = QVBoxLayout()
         self.deviceLayout.setObjectName(u"deviceLayout")
         self.device_label = QLabel(self.centralwidget)
@@ -110,10 +114,18 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addLayout(self.deviceLayout)
 
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.MinimumExpanding)
+
+        self.verticalLayout.addItem(self.verticalSpacer)
+
         self.startButton = QPushButton(self.centralwidget)
         self.startButton.setObjectName(u"startButton")
 
         self.verticalLayout.addWidget(self.startButton)
+
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
+
+        self.verticalLayout.addItem(self.verticalSpacer_3)
 
         self.saveLineEdit = QLineEdit(self.centralwidget)
         self.saveLineEdit.setObjectName(u"saveLineEdit")
@@ -129,10 +141,6 @@ class Ui_MainWindow(object):
         self.saveButton.setObjectName(u"saveButton")
 
         self.verticalLayout.addWidget(self.saveButton)
-
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
-
-        self.verticalLayout.addItem(self.verticalSpacer)
 
 
         self.horizontalLayout.addLayout(self.verticalLayout)
@@ -159,7 +167,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 927, 22))
+        self.menubar.setGeometry(QRect(0, 0, 869, 22))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -171,7 +179,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Pythondaq - Diode experiment", None))
         self.start_label.setText(QCoreApplication.translate("MainWindow", u"Start", None))
         self.stop_label.setText(QCoreApplication.translate("MainWindow", u"Stop", None))
         self.iterations_label.setText(QCoreApplication.translate("MainWindow", u"Iterations", None))

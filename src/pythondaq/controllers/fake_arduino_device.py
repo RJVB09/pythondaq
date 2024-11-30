@@ -22,6 +22,8 @@ class ArduinoVISADevice:
         # Conversion constants
         self.raw2voltage = (3.3 / 1023.0)
         self.voltage2raw = (1023.0 / 3.3)
+
+        self.value = 0
     
     def get_identification(self):
         """Get identification of the current device.
@@ -37,7 +39,7 @@ class ArduinoVISADevice:
         Args:
             value (int): Value from 0 to 1023
         """
-        pass
+        self.value = value
 
     def get_output_value(self):
         """Get output value on port A0.
@@ -46,7 +48,7 @@ class ArduinoVISADevice:
             int: Value from 0 to 1023
         """
         t.sleep(0.001)
-        return 0
+        return self.value
     
     def get_input_value(self, channel):
         """Measure value on a channel.
@@ -57,7 +59,8 @@ class ArduinoVISADevice:
         Returns:
             int: Value from 0 to 1023
         """
-        return 0
+        t.sleep(0.001)
+        return self.value
     
     def get_input_voltage(self, channel):
         """Measure voltage on a channel.
@@ -69,7 +72,7 @@ class ArduinoVISADevice:
             float: Voltage from 0 to 3.3
         """
         t.sleep(0.001)
-        return 0
+        return self.value * self.raw2voltage
     
     def set_output_voltage(self, voltage):
         """Set output voltage on port A0.
