@@ -1,8 +1,8 @@
 import sys
-from PySide6 import QtWidgets
+from PySide6 import QtWidgets, QtCore
 from PySide6.QtCore import Slot
 import pyqtgraph as pg
-from pythondaq.models.fake_diode_experiment import DiodeExperiment, list_resources
+from pythondaq.models.diode_experiment import DiodeExperiment, list_resources
 from pythondaq.ui.diode_experiment_ui import Ui_MainWindow
 import pythondaq.views.view_methods as vm
 import pythondaq.views.view_methods as vm
@@ -27,6 +27,9 @@ class UserInterface(QtWidgets.QMainWindow):
         resources = list_resources()
         self.ui.deviceComboBox.addItems(resources)
 
+        # Initialize the experiment using the current resource
+        self.experiment = DiodeExperiment(self.ui.deviceComboBox.currentText())
+
         # Set the labels prior to a plot
         self.ui.plot_widget.setLabel("left", "Current (A)")
         self.ui.plot_widget.setLabel("bottom", "Voltage (V)")
@@ -34,6 +37,11 @@ class UserInterface(QtWidgets.QMainWindow):
         # Connect the buttons to their functions
         self.ui.startButton.clicked.connect(self.measurement)
         self.ui.saveButton.clicked.connect(self.save_results)
+
+        # Create a timer and allow the plot to be updated every 100 ms
+        self.plot_timer = QtCore.QTimer()
+        self.plot_timer.timeout.connect(self.plot)
+        self.plot_timer.start(100)
 
     def advance_progress_bar(self, data):
         self.ui.progressBar.setValue(self.ui.progressBar.value() + 1)
@@ -51,8 +59,8 @@ class UserInterface(QtWidgets.QMainWindow):
 
     @Slot()
     def measurement(self):
-        # Run the experiment
-        experiment = DiodeExperiment(self.ui.deviceComboBox.currentText())
+        # Update the experiment to the selected port
+        self.experiment = DiodeExperiment(self.ui.deviceComboBox.currentText())
     	
         # Validate the user input, and correct if the start is higher than the stop.
         start_value = self.ui.startSpinBox.value()
@@ -61,13 +69,8 @@ class UserInterface(QtWidgets.QMainWindow):
             self.ui.stopSpinBox.setValue(start_value)
             self.ui.startSpinBox.setValue(stop_value)
 
-        #self.ui.progressBar.setMaximum(self.ui.stopSpinBox.value()) # Set the progressbar bounds
-        #self.ui.progressBar.setMinimum(self.ui.startSpinBox.value())
-        self.U, self.I, self.U_err, self.I_err = experiment.scan(start = self.ui.startSpinBox.value(), stop = self.ui.stopSpinBox.value(), iterations = self.ui.iterationsSpinBox.value(), close = True)
-
-        # Convert the measurement data to numpy arrays
-        self.U, self.I, self.U_err, self.I_err = np.array(self.U), np.array(self.I), np.array(self.U_err), np.array(self.I_err)
-        self.plot()
+        # Start a scan on a thread
+        self.experiment.start_scan(start = self.ui.startSpinBox.value(), stop = self.ui.stopSpinBox.value(), iterations = self.ui.iterationsSpinBox.value(), close = True)
 
         # Allow for saving
         self.experiment_ran = True
@@ -77,13 +80,14 @@ class UserInterface(QtWidgets.QMainWindow):
         # Clear the graph and plot the data
         self.ui.plot_widget.clear()
 
-        self.ui.plot_widget.plot(self.U, self.I, symbol = "o", symbolSize = 3, pen = {"color": "b", "width": 2})
+        self.ui.plot_widget.plot(self.experiment.LED_U_avg, self.experiment.LED_I_avg, symbol = "o", symbolSize = 3, pen = {"color": "b", "width": 2})
         self.ui.plot_widget.setLabel("left", "Current (A)")
         self.ui.plot_widget.setLabel("bottom", "Voltage (V)")
 
         # Plot the errorbars
-        error_bars = pg.ErrorBarItem(x = self.U, y = self.I, width = 2 * self.U_err, height = 2 * self.I_err)
+        error_bars = pg.ErrorBarItem(x = self.experiment.LED_U_avg, y = self.experiment.LED_I_avg, width = 2 * self.experiment.LED_U_err, height = 2 * self.experiment.LED_I_err)
         self.ui.plot_widget.addItem(error_bars)
+
 
 
 def main():

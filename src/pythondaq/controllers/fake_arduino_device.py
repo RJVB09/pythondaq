@@ -48,7 +48,7 @@ class ArduinoVISADevice:
             int: Value from 0 to 1023
         """
         t.sleep(0.001)
-        return self.value
+        return self.value + np.random.rand(1,1)
     
     def get_input_value(self, channel):
         """Measure value on a channel.
@@ -60,7 +60,7 @@ class ArduinoVISADevice:
             int: Value from 0 to 1023
         """
         t.sleep(0.001)
-        return self.value
+        return self.value + np.random.rand(1,1)
     
     def get_input_voltage(self, channel):
         """Measure voltage on a channel.
@@ -72,7 +72,7 @@ class ArduinoVISADevice:
             float: Voltage from 0 to 3.3
         """
         t.sleep(0.001)
-        return self.value * self.raw2voltage
+        return self.value * self.raw2voltage + np.random.rand(1,1)
     
     def set_output_voltage(self, voltage):
         """Set output voltage on port A0.

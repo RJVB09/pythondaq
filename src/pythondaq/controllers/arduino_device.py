@@ -1,5 +1,6 @@
 import pyvisa
 import numpy as np
+import random as r
 
 def list_resources():
     """Retrieve and show a list of available ports.
