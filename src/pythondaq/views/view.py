@@ -1,6 +1,6 @@
 from matplotlib import pyplot as plt
 import csv
-from pythondaq.models.diode_experiment import DiodeExperiment
+from pythondaq.models.fake_diode_experiment import DiodeExperiment
 from pythondaq.views.console_styling import console, logmethod
 import pythondaq.views.view_methods as vm
 from rich.progress import Progress

@@ -1,7 +1,7 @@
 import numpy as np
 import time as t
 
-from pythondaq.controllers.arduino_device import ArduinoVISADevice, list_resources
+from pythondaq.controllers.fake_arduino_device import ArduinoVISADevice, list_resources
 
 raw2voltage = (3.3 / 1023.0)
 
