@@ -37,6 +37,7 @@ class ArduinoVISADevice:
         Args:
             value (int): Value from 0 to 1023
         """
+        pass
 
     def get_output_value(self):
         """Get output value on port A0.
@@ -76,4 +77,10 @@ class ArduinoVISADevice:
         Args:
             voltage (float): Voltage from 0 to 3.3
         """
+        pass
+
+    def close(self):
+        """Closes communication with the arduino
+        """
+        pass
 

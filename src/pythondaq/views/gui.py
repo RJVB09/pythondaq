@@ -2,7 +2,7 @@ import sys
 from PySide6 import QtWidgets
 from PySide6.QtCore import Slot
 import pyqtgraph as pg
-from pythondaq.models.diode_experiment import DiodeExperiment, list_resources
+from pythondaq.models.fake_diode_experiment import DiodeExperiment, list_resources
 from pythondaq.ui.diode_experiment_ui import Ui_MainWindow
 import pythondaq.views.view_methods as vm
 import pythondaq.views.view_methods as vm
@@ -63,7 +63,7 @@ class UserInterface(QtWidgets.QMainWindow):
 
         #self.ui.progressBar.setMaximum(self.ui.stopSpinBox.value()) # Set the progressbar bounds
         #self.ui.progressBar.setMinimum(self.ui.startSpinBox.value())
-        self.U, self.I, self.U_err, self.I_err = experiment.scan(start = self.ui.startSpinBox.value(), stop = self.ui.stopSpinBox.value(), iterations = self.ui.iterationsSpinBox.value())
+        self.U, self.I, self.U_err, self.I_err = experiment.scan(start = self.ui.startSpinBox.value(), stop = self.ui.stopSpinBox.value(), iterations = self.ui.iterationsSpinBox.value(), close = True)
 
         # Convert the measurement data to numpy arrays
         self.U, self.I, self.U_err, self.I_err = np.array(self.U), np.array(self.I), np.array(self.U_err), np.array(self.I_err)
@@ -75,7 +75,7 @@ class UserInterface(QtWidgets.QMainWindow):
     @Slot()
     def plot(self):
         # Clear the graph and plot the data
-        self.plot_widget.clear()
+        self.ui.plot_widget.clear()
 
         self.ui.plot_widget.plot(self.U, self.I, symbol = "o", symbolSize = 3, pen = {"color": "b", "width": 2})
         self.ui.plot_widget.setLabel("left", "Current (A)")

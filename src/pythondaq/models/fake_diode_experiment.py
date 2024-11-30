@@ -17,7 +17,7 @@ class DiodeExperiment:
         """
         return self.device.get_identification()
 
-    def scan(self, start, stop, iterations, log=None, logmethod=None, progress_bar=None, progress_bar_task=None):
+    def scan(self, start, stop, iterations, log = None, logmethod = None, progress_bar = None, progress_bar_task = None, close = False):
         """Execute the experiment for a number of iterations in a given voltage range.
 
         Args:
@@ -77,6 +77,10 @@ class DiodeExperiment:
             # Update progress bar if given.
             if (progress_bar != None and progress_bar_task != None):
                 progress_bar.update(progress_bar_task, advance=1)
+
+        # Close communication after expoeriment if the user wishes to
+        if close:
+            self.device.close()
     
         return LED_voltages_avg, LED_currents_avg, LED_voltages_err, LED_currents_err
 

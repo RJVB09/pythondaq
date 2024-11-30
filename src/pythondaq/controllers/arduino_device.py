@@ -85,3 +85,8 @@ class ArduinoVISADevice:
         """
         self.device.query(f"OUT:CH0 {int(self.voltage2raw * np.clip(0, 3.3, voltage))}")
 
+    def close(self):
+        """Closes communication with the arduino
+        """
+        self.device.close()
+
