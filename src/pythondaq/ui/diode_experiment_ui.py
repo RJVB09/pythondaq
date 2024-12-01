@@ -21,15 +21,17 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QHBoxLayout,
     QSpinBox, QStatusBar, QVBoxLayout, QWidget)
 
 from pyqtgraph import PlotWidget
-import pythondaq.ui.diode_experiment_ui_resources 
+import pythondaq.ui.diode_experiment_ui_resources
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(953, 547)
+        MainWindow.resize(926, 605)
+        MainWindow.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(255, 0, 0, 255), stop:0.339795 rgba(255, 0, 0, 255), stop:0.339799 rgba(255, 255, 255, 255), stop:0.662444 rgba(255, 255, 255, 255), stop:0.662469 rgba(0, 0, 255, 255), stop:1 rgba(0, 0, 255, 255));")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
+        self.centralwidget.setStyleSheet(u"background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.273, fy:0.238636, stop:0 rgba(126, 148, 146, 255), stop:0.465909 rgba(0, 86, 79, 255), stop:1 rgba(22, 22, 22, 255));")
         self.verticalLayout_3 = QVBoxLayout(self.centralwidget)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.horizontalLayout = QHBoxLayout()
@@ -43,7 +45,9 @@ class Ui_MainWindow(object):
         self.start_label = QLabel(self.centralwidget)
         self.start_label.setObjectName(u"start_label")
         self.start_label.setStyleSheet(u"font: bold 15px;\n"
-"font-family: Comic Sans MS;")
+"background-color: rgba(255, 255, 255, 0);\n"
+"font-family: Comic Sans MS;\n"
+"color: rgb(255, 255, 255);")
 
         self.verticalLayout_2.addWidget(self.start_label)
 
@@ -64,7 +68,9 @@ class Ui_MainWindow(object):
         self.stop_label = QLabel(self.centralwidget)
         self.stop_label.setObjectName(u"stop_label")
         self.stop_label.setStyleSheet(u"font: bold 15px;\n"
-"font-family: Comic Sans MS;")
+"background-color: rgba(255, 255, 255, 0);\n"
+"font-family: Comic Sans MS;\n"
+"color: rgb(255, 255, 255);")
 
         self.startLayout.addWidget(self.stop_label)
 
@@ -89,7 +95,9 @@ class Ui_MainWindow(object):
         self.iterations_label = QLabel(self.centralwidget)
         self.iterations_label.setObjectName(u"iterations_label")
         self.iterations_label.setStyleSheet(u"font: bold 15px;\n"
-"font-family: Comic Sans MS;")
+"background-color: rgba(255, 255, 255, 0);\n"
+"font-family: Comic Sans MS;\n"
+"color: rgb(255, 255, 255);")
 
         self.iterationsLayout.addWidget(self.iterations_label)
 
@@ -115,7 +123,9 @@ class Ui_MainWindow(object):
         self.device_label = QLabel(self.centralwidget)
         self.device_label.setObjectName(u"device_label")
         self.device_label.setStyleSheet(u"font: bold 15px;\n"
-"font-family: Comic Sans MS;")
+"background-color: rgba(255, 255, 255, 0);\n"
+"font-family: Comic Sans MS;\n"
+"color: rgb(255, 255, 255);")
 
         self.deviceLayout.addWidget(self.device_label)
 
@@ -145,11 +155,10 @@ class Ui_MainWindow(object):
         self.frame.setSizePolicy(sizePolicy)
         self.frame.setMinimumSize(QSize(0, 100))
         self.frame.setStyleSheet(u"background-image: url(:/images/scrumpy.jpg);\n"
-"background-color: #cccccc; /* Used if the image is unavailable */\n"
-"height: 100px; /* You must set a specified height */\n"
-"background-position: center; /* Center the image */\n"
-"background-repeat: no-repeat; /* Do not repeat the image */\n"
-"background-size: cover; /* Resize the background image to cover the entire container */")
+"background-color: #cccccc;\n"
+"background-position: center;\n"
+"border-image: url(:/images/scrumpy.jpg) 0 0 0 0 stretch stretch;\n"
+"")
         self.frame.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame.setFrameShadow(QFrame.Shadow.Raised)
 
@@ -163,9 +172,27 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.startButton)
 
+        self.stopButton = QPushButton(self.centralwidget)
+        self.stopButton.setObjectName(u"stopButton")
+        self.stopButton.setEnabled(False)
+        self.stopButton.setStyleSheet(u"\n"
+"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(173, 0, 57, 255), stop:1 rgba(255, 124, 112, 255));\n"
+"font-family: Comic Sans MS")
+
+        self.verticalLayout.addWidget(self.stopButton)
+
         self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
 
         self.verticalLayout.addItem(self.verticalSpacer_3)
+
+        self.label = QLabel(self.centralwidget)
+        self.label.setObjectName(u"label")
+        self.label.setStyleSheet(u"font: bold 15px;\n"
+"background-color: rgba(255, 255, 255, 0);\n"
+"font-family: Comic Sans MS;\n"
+"color: rgb(255, 255, 255);")
+
+        self.verticalLayout.addWidget(self.label)
 
         self.saveLineEdit = QLineEdit(self.centralwidget)
         self.saveLineEdit.setObjectName(u"saveLineEdit")
@@ -196,15 +223,43 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_4 = QVBoxLayout()
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.label_2 = QLabel(self.centralwidget)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setStyleSheet(u"background-image: url(:/images/waltuh.jpg);\n"
+"background-color: #cccccc;\n"
+"background-position: center;\n"
+"border-image: url(:/images/waltuh.jpg) 0 0 0 0 stretch stretch;\n"
+"font-size: 20px;\n"
+"font: 20pt \"Comic Sans MS\";\n"
+"border-radius: 10px;\n"
+"color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 0, 0, 255), stop:0.166 rgba(255, 255, 0, 255), stop:0.333 rgba(0, 255, 0, 255), stop:0.5 rgba(0, 255, 255, 255), stop:0.666 rgba(0, 0, 255, 255), stop:0.833 rgba(255, 0, 255, 255), stop:1 rgba(255, 0, 0, 255));\n"
+"")
+        self.label_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.verticalLayout_4.addWidget(self.label_2)
+
         self.plot_widget = PlotWidget(self.centralwidget)
         self.plot_widget.setObjectName(u"plot_widget")
+        self.plot_widget.setMinimumSize(QSize(650, 0))
         self.plot_widget.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(65, 111, 120, 255));")
 
         self.verticalLayout_4.addWidget(self.plot_widget)
 
         self.progressBar = QProgressBar(self.centralwidget)
         self.progressBar.setObjectName(u"progressBar")
-        self.progressBar.setStyleSheet(u"font: 700 11pt \"Comic Sans MS\";")
+        self.progressBar.setStyleSheet(u"QProgressBar{\n"
+"	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(65, 111, 120, 255));\n"
+"	font: 700 11pt \"Comic Sans MS\";\n"
+"	color: rgb(255, 255, 255);\n"
+"	text-align: center;\n"
+"	border-radius: 10px;\n"
+"}\n"
+"\n"
+"QProgressBar::chunk{\n"
+"	\n"
+"	background-color: qlineargradient(spread:repeat, x1:0, y1:1, x2:1, y2:1, stop:0 rgba(129, 59, 188, 135), stop:1 rgba(71, 0, 171, 255));\n"
+"	border-radius: 10px;\n"
+"}")
         self.progressBar.setValue(24)
 
         self.verticalLayout_4.addWidget(self.progressBar)
@@ -218,7 +273,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 953, 22))
+        self.menubar.setGeometry(QRect(0, 0, 926, 22))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -237,8 +292,11 @@ class Ui_MainWindow(object):
         self.device_label.setText(QCoreApplication.translate("MainWindow", u"Device", None))
         self.updateDevicesButton.setText(QCoreApplication.translate("MainWindow", u"Update devices list...", None))
         self.startButton.setText(QCoreApplication.translate("MainWindow", u"Start measurement", None))
+        self.stopButton.setText(QCoreApplication.translate("MainWindow", u"STOPP!!!!!!", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.saveLineEdit.setText("")
         self.saveLineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"CSV file name", None))
         self.saveButton.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Diode experiment tool (lol)", None))
     # retranslateUi
 

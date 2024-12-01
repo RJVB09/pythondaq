@@ -6,14 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>953</width>
-    <height>547</height>
+    <width>926</width>
+    <height>605</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Pythondaq - Diode experiment</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(255, 0, 0, 255), stop:0.339795 rgba(255, 0, 0, 255), stop:0.339799 rgba(255, 255, 255, 255), stop:0.662444 rgba(255, 255, 255, 255), stop:0.662469 rgba(0, 0, 255, 255), stop:1 rgba(0, 0, 255, 255));</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.273, fy:0.238636, stop:0 rgba(126, 148, 146, 255), stop:0.465909 rgba(0, 86, 79, 255), stop:1 rgba(22, 22, 22, 255));</string>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
@@ -27,7 +33,9 @@
              <widget class="QLabel" name="start_label">
               <property name="styleSheet">
                <string notr="true">font: bold 15px;
-font-family: Comic Sans MS;</string>
+background-color: rgba(255, 255, 255, 0);
+font-family: Comic Sans MS;
+color: rgb(255, 255, 255);</string>
               </property>
               <property name="text">
                <string>Start</string>
@@ -54,7 +62,9 @@ font: bold 12px;</string>
              <widget class="QLabel" name="stop_label">
               <property name="styleSheet">
                <string notr="true">font: bold 15px;
-font-family: Comic Sans MS;</string>
+background-color: rgba(255, 255, 255, 0);
+font-family: Comic Sans MS;
+color: rgb(255, 255, 255);</string>
               </property>
               <property name="text">
                <string>Stop</string>
@@ -86,7 +96,9 @@ font: bold 12px;</string>
            <widget class="QLabel" name="iterations_label">
             <property name="styleSheet">
              <string notr="true">font: bold 15px;
-font-family: Comic Sans MS;</string>
+background-color: rgba(255, 255, 255, 0);
+font-family: Comic Sans MS;
+color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
              <string>Iterations</string>
@@ -132,7 +144,9 @@ font: bold 12px;</string>
            <widget class="QLabel" name="device_label">
             <property name="styleSheet">
              <string notr="true">font: bold 15px;
-font-family: Comic Sans MS;</string>
+background-color: rgba(255, 255, 255, 0);
+font-family: Comic Sans MS;
+color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
              <string>Device</string>
@@ -176,11 +190,10 @@ font-family: Comic Sans MS</string>
           </property>
           <property name="styleSheet">
            <string notr="true">background-image: url(:/images/scrumpy.jpg);
-background-color: #cccccc; /* Used if the image is unavailable */
-height: 100px; /* You must set a specified height */
-background-position: center; /* Center the image */
-background-repeat: no-repeat; /* Do not repeat the image */
-background-size: cover; /* Resize the background image to cover the entire container */</string>
+background-color: #cccccc;
+background-position: center;
+border-image: url(:/images/scrumpy.jpg) 0 0 0 0 stretch stretch;
+</string>
           </property>
           <property name="frameShape">
            <enum>QFrame::Shape::StyledPanel</enum>
@@ -203,6 +216,21 @@ font-family: Comic Sans MS</string>
          </widget>
         </item>
         <item>
+         <widget class="QPushButton" name="stopButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(173, 0, 57, 255), stop:1 rgba(255, 124, 112, 255));
+font-family: Comic Sans MS</string>
+          </property>
+          <property name="text">
+           <string>STOPP!!!!!!</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <spacer name="verticalSpacer_3">
           <property name="orientation">
            <enum>Qt::Orientation::Vertical</enum>
@@ -217,6 +245,19 @@ font-family: Comic Sans MS</string>
            </size>
           </property>
          </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="styleSheet">
+           <string notr="true">font: bold 15px;
+background-color: rgba(255, 255, 255, 0);
+font-family: Comic Sans MS;
+color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Save</string>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QLineEdit" name="saveLineEdit">
@@ -271,7 +312,34 @@ font-family: Comic Sans MS</string>
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
+         <widget class="QLabel" name="label_2">
+          <property name="styleSheet">
+           <string notr="true">background-image: url(:/images/waltuh.jpg);
+background-color: #cccccc;
+background-position: center;
+border-image: url(:/images/waltuh.jpg) 0 0 0 0 stretch stretch;
+font-size: 20px;
+font: 20pt &quot;Comic Sans MS&quot;;
+border-radius: 10px;
+color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 0, 0, 255), stop:0.166 rgba(255, 255, 0, 255), stop:0.333 rgba(0, 255, 0, 255), stop:0.5 rgba(0, 255, 255, 255), stop:0.666 rgba(0, 0, 255, 255), stop:0.833 rgba(255, 0, 255, 255), stop:1 rgba(255, 0, 0, 255));
+</string>
+          </property>
+          <property name="text">
+           <string>Diode experiment tool (lol)</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="PlotWidget" name="plot_widget">
+          <property name="minimumSize">
+           <size>
+            <width>650</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="styleSheet">
            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(65, 111, 120, 255));</string>
           </property>
@@ -280,7 +348,19 @@ font-family: Comic Sans MS</string>
         <item>
          <widget class="QProgressBar" name="progressBar">
           <property name="styleSheet">
-           <string notr="true">font: 700 11pt &quot;Comic Sans MS&quot;;</string>
+           <string notr="true">QProgressBar{
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(65, 111, 120, 255));
+	font: 700 11pt &quot;Comic Sans MS&quot;;
+	color: rgb(255, 255, 255);
+	text-align: center;
+	border-radius: 10px;
+}
+
+QProgressBar::chunk{
+	
+	background-color: qlineargradient(spread:repeat, x1:0, y1:1, x2:1, y2:1, stop:0 rgba(129, 59, 188, 135), stop:1 rgba(71, 0, 171, 255));
+	border-radius: 10px;
+}</string>
           </property>
           <property name="value">
            <number>24</number>
@@ -298,7 +378,7 @@ font-family: Comic Sans MS</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>953</width>
+     <width>926</width>
      <height>22</height>
     </rect>
    </property>
