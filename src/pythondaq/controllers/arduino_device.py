@@ -29,6 +29,11 @@ class ArduinoVISADevice:
         # Retrieve the resource manager
         rm = pyvisa.ResourceManager("@py")
 
+        # Close any open ports
+        open_ports = rm.list_opened_resources()
+        for resource in open_ports:
+            resource.close()
+
         # Get the device
         self.device = rm.open_resource(port, read_termination="\r\n", write_termination="\n")
     

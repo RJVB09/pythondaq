@@ -48,6 +48,8 @@ class UserInterface(QtWidgets.QMainWindow):
 
     @Slot()
     def save_results(self):
+        """Save the measurement results to a csv file.
+        """
         # The default name of the csv file is DiodeExperimentResults.csv rename if a filename is given.
         name = "DiodeExperimentResults"
         if self.ui.saveLineEdit.text() != "":
