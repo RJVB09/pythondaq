@@ -69,7 +69,7 @@ class DiodeExperiment:
                 break
 
             # Update the progress as a percentage
-            self.progress = int(float(v) / float(stop - start) * 100)
+            self.progress = int(float(v - start) / float(stop - start) * 100)
 
             # Create the result arrays for a single voltage value
             LED_U_iteration = []

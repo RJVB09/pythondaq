@@ -1,7 +1,7 @@
 <RCC>
   <qresource prefix="images">
-    <file>birb.jpg</file>
-    <file>waltuh.jpg</file>
-    <file>scrumpy.jpg</file>
+    <file>images/birb.jpg</file>
+    <file>images/waltuh.jpg</file>
+    <file>images/scrumpy.jpg</file>
   </qresource>
 </RCC>
